@@ -25,5 +25,20 @@ public class StudentService {
 
         return students;
     }
-    
+
+    public Student getStudentById(Integer id){
+        return repository.findById(id).orElse(null);
+    }
+
+    public void deleteStudent(Integer id){
+        repository.deleteById(id);
+    }
+
+    public void addStudent(Student student){
+        repository.save(student);
+    }
+
+    public void updateStudent(Student student, Integer id){
+        repository.save(student);
+    }
 }
