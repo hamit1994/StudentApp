@@ -1,67 +1,75 @@
 package com.example.StudentApp.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "student", schema = "public")
 public class Student {
-    private long id;
-    private String firstName;
-    private String lastName;
-    private String adresse;
-    private String mail;
-    private long phone;
-    
-    public Student(long id, String first, String last, String adr, String mail, long phone){
+    @Id
+    private Integer id;
+    private String first_name;
+    private String last_name;
+    private Integer phone;
+    private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address", referencedColumnName = "id")
+    private Address address;
+
+    public Student(Integer id, String first, String last, String mail, Integer phone){
         this.id = id;
-        this.firstName = first;
-        this.lastName = last;
-        this.adresse = adr;
-        this.mail = mail;
+        this.first_name = first;
+        this.last_name = last;
+        this.email = mail;
         this.phone = phone;
     }
 
-    public long getId() {
+    public Student(){
+        
+    }
+
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(Integer id_person) {
+        this.id = id_person;
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    public String getFirst_name() {
+        return this.first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirst_name(String firstName) {
+        this.first_name = firstName;
     }
 
-    public String getLastName() {
-        return this.lastName;
+    public String getLast_name() {
+        return this.last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLast_name(String lastName) {
+        this.last_name = lastName;
     }
 
-    public String getAdresse() {
-        return this.adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public String getMail() {
-        return this.mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public long getPhone() {
+    public Integer getPhone() {
         return this.phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
-    } 
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String mail) {
+        this.email = mail;
+    }
 }
