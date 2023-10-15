@@ -1,8 +1,10 @@
 package com.example.StudentApp.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,8 +19,8 @@ public class Address {
     private Integer postal_code;
     private String country;
 
-    @OneToOne(mappedBy = "address")
-    private Student student;
+    @OneToMany(mappedBy = "address")
+    private Set<Student> students;
 
     public Address(Integer id, String street, String city, String state, Integer postal_code, String country){
         this.id = id;
@@ -30,7 +32,7 @@ public class Address {
     }
 
     public Address(){
-        
+
     }
 
     public Integer getId_location() {
